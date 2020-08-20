@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "mixed:blocks/dna_extractor_top",
+		"bottom": "mixed:blocks/dna_extractor_bottom",
+		"top": "mixed:blocks/dna_extractor_top",
+		"side": "mixed:blocks/dna_extractor_side"
+	}
+}

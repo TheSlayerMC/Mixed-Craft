@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "mixed:blocks/assembler_top",
+		"bottom": "mixed:blocks/assembler_bottom",
+		"top": "mixed:blocks/assembler_top",
+		"side": "mixed:blocks/assembler_side"
+	}
+}
