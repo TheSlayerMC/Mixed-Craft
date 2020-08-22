@@ -35,23 +35,23 @@ public class ItemHandler {
     
     public static void init() {
     	FLASH_DRIVE = new MItem("flash_drive", "Flash Drive");
-    	FAILED_FLASH_DRIVE = new MItem("failed_flash_drive", "Flash Drive");
+    	FAILED_FLASH_DRIVE = new ItemDNAKey("failed_flash_drive", "Corrupt Drive", EnumDNAKey.FAILED);
     	MIXED_DNA_DRIVE = new MItem("mixed_dna_drive", "Mixed DNA Drive");
 
-    	COW_DNA_DRIVE = new ItemDNAKey("cow_dna_drive", EnumDNAKey.COW);
-    	PIG_DNA_DRIVE = new ItemDNAKey("pig_dna_drive", EnumDNAKey.PIG);
-    	SHEEP_DNA_DRIVE = new ItemDNAKey("sheep_dna_drive", EnumDNAKey.SHEEP);
-    	CHICKEN_DNA_DRIVE = new ItemDNAKey("chicken_dna_drive", EnumDNAKey.CHICKEN); 
-    	CREEPER_DNA_DRIVE = new ItemDNAKey("creeper_dna_drive", EnumDNAKey.CREEPER);
-    	ENDERMAN_DNA_DRIVE = new ItemDNAKey("enderman_dna_drive", EnumDNAKey.ENDERMAN);
-    	ZOMBIE_DNA_DRIVE = new ItemDNAKey("zombie_dna_drive", EnumDNAKey.ZOMBIE);
-    	SKELETON_DNA_DRIVE = new ItemDNAKey("skeleton_dna_drive", EnumDNAKey.SKELETON);
-    	GHAST_DNA_DRIVE = new ItemDNAKey("ghast_dna_drive", EnumDNAKey.GHAST);
-    	SPIDER_DNA_DRIVE = new ItemDNAKey("spider_dna_drive", EnumDNAKey.SPIDER);
-    	SLIME_DNA_DRIVE = new ItemDNAKey("slime_dna_drive", EnumDNAKey.SLIME);
-    	SQUID_DNA_DRIVE = new ItemDNAKey("squid_dna_drive", EnumDNAKey.SQUID);
-    	BLAZE_DNA_DRIVE = new ItemDNAKey("blaze_dna_drive", EnumDNAKey.BLAZE);
-    	WITHER_SKELETON_DNA_DRIVE = new ItemDNAKey("wither_skeleton_dna_drive", EnumDNAKey.WITHER_SKELETON);
-    	WITHER_DNA_DRIVE = new ItemDNAKey("wither_dna_drive", EnumDNAKey.WITHER);
+    	COW_DNA_DRIVE = new ItemDNAKey("cow_dna_drive", "DNA Drive", EnumDNAKey.COW);
+    	PIG_DNA_DRIVE = new ItemDNAKey("pig_dna_drive", "DNA Drive", EnumDNAKey.PIG);
+    	SHEEP_DNA_DRIVE = new ItemDNAKey("sheep_dna_drive", "DNA Drive", EnumDNAKey.SHEEP);
+    	CHICKEN_DNA_DRIVE = new ItemDNAKey("chicken_dna_drive", "DNA Drive", EnumDNAKey.CHICKEN); 
+    	CREEPER_DNA_DRIVE = new ItemDNAKey("creeper_dna_drive", "DNA Drive", EnumDNAKey.CREEPER);
+    	ENDERMAN_DNA_DRIVE = new ItemDNAKey("enderman_dna_drive", "DNA Drive", EnumDNAKey.ENDERMAN);
+    	ZOMBIE_DNA_DRIVE = new ItemDNAKey("zombie_dna_drive", "DNA Drive", EnumDNAKey.ZOMBIE);
+    	SKELETON_DNA_DRIVE = new ItemDNAKey("skeleton_dna_drive", "DNA Drive", EnumDNAKey.SKELETON);
+    	GHAST_DNA_DRIVE = new ItemDNAKey("ghast_dna_drive", "DNA Drive", EnumDNAKey.GHAST);
+    	SPIDER_DNA_DRIVE = new ItemDNAKey("spider_dna_drive", "DNA Drive", EnumDNAKey.SPIDER);
+    	SLIME_DNA_DRIVE = new ItemDNAKey("slime_dna_drive", "DNA Drive", EnumDNAKey.SLIME);
+    	SQUID_DNA_DRIVE = new ItemDNAKey("squid_dna_drive", "DNA Drive", EnumDNAKey.SQUID);
+    	BLAZE_DNA_DRIVE = new ItemDNAKey("blaze_dna_drive", "DNA Drive", EnumDNAKey.BLAZE);
+    	WITHER_SKELETON_DNA_DRIVE = new ItemDNAKey("wither_skeleton_dna_drive", "DNA Drive", EnumDNAKey.WITHER_SKELETON);
+    	WITHER_DNA_DRIVE = new ItemDNAKey("wither_dna_drive", "DNA Drive", EnumDNAKey.WITHER);
     }
 }

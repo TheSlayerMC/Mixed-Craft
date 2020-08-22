@@ -28,10 +28,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.mixed.ItemHandler;
 import net.mixed.MixedCraft;
-import net.mixed.container.ContainerMixer;
-import net.mixed.container.recipes.MixerRecipes;
+import net.mixed.container.ContainerDNAAssembler;
+import net.mixed.container.recipes.AssemblerRecipes;
 
-public class TileEntityMixer extends TileEntityLockable implements ITickable, ISidedInventory {
+public class TileEntityAssembler extends TileEntityLockable implements ITickable, ISidedInventory {
 
 	private static final int[] SLOTS_TOP = new int[]{0};
 	private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
@@ -40,22 +40,22 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 	private final IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
 	private final IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
 
-	private NonNullList<ItemStack> mixerItemStacks = NonNullList.withSize(3, ItemStack.EMPTY);
+	private NonNullList<ItemStack> AssemblerItemStacks = NonNullList.withSize(3, ItemStack.EMPTY);
 
-	private int mixerBurnTime;
+	private int AssemblerBurnTime;
 	private int currentItemBurnTime;
 	private int cookTime;
 	private int totalCookTime;
-	private String mixerCustomName;
+	private String AssemblerCustomName;
 
 	@Override
 	public int getSizeInventory() {
-		return this.mixerItemStacks.size();
+		return this.AssemblerItemStacks.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		for (ItemStack itemstack : this.mixerItemStacks) {
+		for (ItemStack itemstack : this.AssemblerItemStacks) {
 			if (!itemstack.isEmpty()) {
 				return false;
 			}
@@ -65,24 +65,24 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
-		return this.mixerItemStacks.get(index);
+		return this.AssemblerItemStacks.get(index);
 	}
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
-		return ItemStackHelper.getAndSplit(this.mixerItemStacks, index, count);
+		return ItemStackHelper.getAndSplit(this.AssemblerItemStacks, index, count);
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
-		return ItemStackHelper.getAndRemove(this.mixerItemStacks, index);
+		return ItemStackHelper.getAndRemove(this.AssemblerItemStacks, index);
 	}
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
-		ItemStack itemstack = this.mixerItemStacks.get(index);
+		ItemStack itemstack = this.AssemblerItemStacks.get(index);
 		boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
-		this.mixerItemStacks.set(index, stack);
+		this.AssemblerItemStacks.set(index, stack);
 
 		if (stack.getCount() > this.getInventoryStackLimit()) {
 			stack.setCount(this.getInventoryStackLimit());
@@ -97,47 +97,47 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 	@Override
 	public String getName() {
-		return this.hasCustomName() ? this.mixerCustomName : "container.mixer";
+		return this.hasCustomName() ? this.AssemblerCustomName : "container.Assembler";
 	}
 
 	@Override
 	public boolean hasCustomName() {
-		return this.mixerCustomName != null && !this.mixerCustomName.isEmpty();
+		return this.AssemblerCustomName != null && !this.AssemblerCustomName.isEmpty();
 	}
 
 	public void setCustomInventoryName(String p_145951_1_) {
-		this.mixerCustomName = p_145951_1_;
+		this.AssemblerCustomName = p_145951_1_;
 	}
 
-	public static void registerFixesmixer(DataFixer fixer) {
-		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityMixer.class, "Items"));
+	public static void registerFixesAssembler(DataFixer fixer) {
+		fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileEntityAssembler.class, "Items"));
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		this.mixerItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-		ItemStackHelper.loadAllItems(compound, this.mixerItemStacks);
-		this.mixerBurnTime = compound.getInteger("BurnTime");
+		this.AssemblerItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+		ItemStackHelper.loadAllItems(compound, this.AssemblerItemStacks);
+		this.AssemblerBurnTime = compound.getInteger("BurnTime");
 		this.cookTime = compound.getInteger("CookTime");
 		this.totalCookTime = compound.getInteger("CookTimeTotal");
-		this.currentItemBurnTime = getItemBurnTime(this.mixerItemStacks.get(1));
+		this.currentItemBurnTime = getItemBurnTime(this.AssemblerItemStacks.get(1));
 
 		if (compound.hasKey("CustomName", 8)) {
-			this.mixerCustomName = compound.getString("CustomName");
+			this.AssemblerCustomName = compound.getString("CustomName");
 		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		compound.setInteger("BurnTime", (short)this.mixerBurnTime);
+		compound.setInteger("BurnTime", (short)this.AssemblerBurnTime);
 		compound.setInteger("CookTime", (short)this.cookTime);
 		compound.setInteger("CookTimeTotal", (short)this.totalCookTime);
-		ItemStackHelper.saveAllItems(compound, this.mixerItemStacks);
+		ItemStackHelper.saveAllItems(compound, this.AssemblerItemStacks);
 
 		if (this.hasCustomName()) {
-			compound.setString("CustomName", this.mixerCustomName);
+			compound.setString("CustomName", this.AssemblerCustomName);
 		}
 
 		return compound;
@@ -149,12 +149,12 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 	}
 
 	public boolean isBurning() {
-		return this.mixerBurnTime > 0;
+		return true;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static boolean isBurning(IInventory inventory) {
-		return inventory.getField(0) > 0;
+		return true;
 	}
 
 	@Override
@@ -163,16 +163,16 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 		boolean flag1 = false;
 
 		if (this.isBurning()) {
-			--this.mixerBurnTime;
+			--this.AssemblerBurnTime;
 		}
 
 		if (!this.world.isRemote) {
-			ItemStack itemstack = this.mixerItemStacks.get(1);
+			ItemStack itemstack = this.AssemblerItemStacks.get(1);
 
-			if (this.isBurning() || !itemstack.isEmpty() && !this.mixerItemStacks.get(0).isEmpty()) {
+			if (this.isBurning() || !itemstack.isEmpty() && !this.AssemblerItemStacks.get(0).isEmpty()) {
 				if (!this.isBurning() && this.canSmelt()) {
-					this.mixerBurnTime = getItemBurnTime(itemstack);
-					this.currentItemBurnTime = this.mixerBurnTime;
+					this.AssemblerBurnTime = getItemBurnTime(itemstack);
+					this.currentItemBurnTime = this.AssemblerBurnTime;
 
 					if (this.isBurning()) {
 						flag1 = true;
@@ -183,7 +183,7 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 							if (itemstack.isEmpty()) {
 								ItemStack item1 = item.getContainerItem(itemstack);
-								this.mixerItemStacks.set(1, item1);
+								this.AssemblerItemStacks.set(1, item1);
 								
 							}
 						}
@@ -195,7 +195,7 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 					if (this.cookTime == this.totalCookTime) {
 						this.cookTime = 0;
-						this.totalCookTime = this.getCookTime(this.mixerItemStacks.get(0));
+						this.totalCookTime = this.getCookTime(this.AssemblerItemStacks.get(0));
 						this.smeltItem();
 						flag1 = true;
 					}
@@ -221,15 +221,15 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 	}
 
 	private boolean canSmelt() {
-		if (this.mixerItemStacks.get(0).isEmpty()) {
+		if (this.AssemblerItemStacks.get(0).isEmpty()) {
 			return false;
 		} else {
-			ItemStack itemstack = MixerRecipes.instance().getSmeltingResult(this.mixerItemStacks.get(0));
+			ItemStack itemstack = AssemblerRecipes.instance().getSmeltingResult(this.AssemblerItemStacks.get(0));
 
 			if (itemstack.isEmpty()) {
 				return false;
 			} else {
-				ItemStack itemstack1 = this.mixerItemStacks.get(2);
+				ItemStack itemstack1 = this.AssemblerItemStacks.get(2);
 
 				if (itemstack1.isEmpty()) {
 					return true;
@@ -248,12 +248,12 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 	public void smeltItem() {
 		if (this.canSmelt()) {
-			ItemStack itemstack = this.mixerItemStacks.get(0);
-			ItemStack itemstack1 = MixerRecipes.instance().getSmeltingResult(itemstack);
-			ItemStack itemstack2 = this.mixerItemStacks.get(2);
+			ItemStack itemstack = this.AssemblerItemStacks.get(0);
+			ItemStack itemstack1 = AssemblerRecipes.instance().getSmeltingResult(itemstack);
+			ItemStack itemstack2 = this.AssemblerItemStacks.get(2);
 
 			if (itemstack2.isEmpty()) {
-				this.mixerItemStacks.set(2, itemstack1.copy());
+				this.AssemblerItemStacks.set(2, itemstack1.copy());
 			} else if (itemstack2.getItem() == itemstack1.getItem()) {
 				itemstack2.grow(itemstack1.getCount());
 			}
@@ -296,15 +296,11 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		if (index == 2) {
-			return false;
-		}
-		else if (index != 1) {
-			return true;
-		} else {
-			ItemStack itemstack = this.mixerItemStacks.get(1);
-			return isItemFuel(stack);
-		}
+		return index == 0 || (this.needsFuel() && index == 1 && isItemFuel(stack));
+	}
+	
+	public boolean needsFuel() {
+		return false;
 	}
 
 	@Override
@@ -328,19 +324,19 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 	@Override
 	public String getGuiID() {
-		return MixedCraft.PREFIX + "mixer";
+		return MixedCraft.PREFIX + "Assembler";
 	}
 
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-		return new ContainerMixer(playerInventory, this);
+		return new ContainerDNAAssembler(playerInventory, this);
 	}
 
 	@Override
 	public int getField(int id) {
 		switch (id) {
 		case 0:
-			return this.mixerBurnTime;
+			return this.AssemblerBurnTime;
 		case 1:
 			return this.currentItemBurnTime;
 		case 2:
@@ -355,7 +351,7 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 	public void setField(int id, int value) {
 		switch (id) {
 		case 0:
-			this.mixerBurnTime = value;
+			this.AssemblerBurnTime = value;
 			break;
 		case 1:
 			this.currentItemBurnTime = value;
@@ -375,7 +371,7 @@ public class TileEntityMixer extends TileEntityLockable implements ITickable, IS
 
 	@Override
 	public void clear() {
-		this.mixerItemStacks.clear();
+		this.AssemblerItemStacks.clear();
 	}
 
 	@Override

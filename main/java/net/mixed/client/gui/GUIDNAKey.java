@@ -1,4 +1,4 @@
-package net.mixed.gui;
+package net.mixed.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
@@ -42,6 +42,8 @@ public class GUIDNAKey extends GuiContainer {
 		
 		scaleFont(dna.getDesc()[4], x1 + 22, y1 + 190, 0xFFFFFF, 1.0F);
 		scaleFont(dna.getDesc()[5], x1 + 22, y1 + 200, 0xFFFFFF, 1.0F);
+		scaleFont(dna.getDesc()[6], x1 + 22, y1 + 210, 0xFFFFFF, 1.0F);
+		scaleFont(dna.getDesc()[7], x1 + 22, y1 + 220, 0xFFFFFF, 1.0F);
 	}
 	
 	@SideOnly(Side.CLIENT)

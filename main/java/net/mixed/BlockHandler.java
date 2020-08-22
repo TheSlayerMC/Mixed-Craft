@@ -15,7 +15,7 @@ public class BlockHandler {
 
 	public static BlockDNAExtractor DNA_EXTRACTOR;
 	public static BlockDNAMixer DNA_MIXER;
-	public static BlockMod ASSEMBLER;
+	public static BlockDNAAssembler ASSEMBLER;
 
 	public static BlockMod COPPER_ORE;
 	public static BlockMod COPPER_BLOCK;
@@ -29,7 +29,7 @@ public class BlockHandler {
 	public static void init() {
 		DNA_EXTRACTOR = new BlockDNAExtractor("dna_extractor", "DNA Extractor");
 		DNA_MIXER = new BlockDNAMixer("dna_mixer", "DNA Mixer");
-		ASSEMBLER = new BlockMod("assembler", "Mob Assembler");
+		ASSEMBLER = new BlockDNAAssembler("assembler", "Mob Assembler");
 
 		COPPER_ORE = new BlockMod("copper_ore", "Copper Ore");
 		COPPER_BLOCK = new BlockMod("copper_block", "Copper Block");

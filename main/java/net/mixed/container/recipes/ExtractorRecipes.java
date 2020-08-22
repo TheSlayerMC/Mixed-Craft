@@ -1,8 +1,10 @@
 package net.mixed.container.recipes;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
@@ -10,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.mixed.ItemHandler;
 
 public class ExtractorRecipes {
@@ -23,26 +26,38 @@ public class ExtractorRecipes {
     }
 
     private ExtractorRecipes() {
-        this.addSmelting(Items.PORKCHOP, new ItemStack(ItemHandler.PIG_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.BEEF, new ItemStack(ItemHandler.COW_DNA_DRIVE), 0.0F);
-        this.addSmelting(Blocks.WOOL, new ItemStack(ItemHandler.SHEEP_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.GUNPOWDER, new ItemStack(ItemHandler.CREEPER_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.CHICKEN, new ItemStack(ItemHandler.CHICKEN_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.ENDER_PEARL, new ItemStack(ItemHandler.ENDERMAN_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.ZOMBIE_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.FEATHER, new ItemStack(ItemHandler.CHICKEN_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.BONE, new ItemStack(ItemHandler.SKELETON_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.GHAST_TEAR, new ItemStack(ItemHandler.GHAST_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.ARROW, new ItemStack(ItemHandler.SKELETON_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.STRING, new ItemStack(ItemHandler.SPIDER_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.SLIME_BALL, new ItemStack(ItemHandler.SLIME_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.BLAZE_ROD, new ItemStack(ItemHandler.BLAZE_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.SPIDER_EYE, new ItemStack(ItemHandler.SPIDER_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.DYE, new ItemStack(ItemHandler.SQUID_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.SKULL, new ItemStack(ItemHandler.WITHER_SKELETON_DNA_DRIVE), 0.0F);
-        this.addSmelting(Items.NETHER_STAR, new ItemStack(ItemHandler.WITHER_DNA_DRIVE), 0.0F);
-
+    	
+    	 this.addSmelting(Items.PORKCHOP, new ItemStack(ItemHandler.PIG_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.BEEF, new ItemStack(ItemHandler.COW_DNA_DRIVE), 0.0F);
+         this.addSmelting(Blocks.WOOL, new ItemStack(ItemHandler.SHEEP_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.GUNPOWDER, new ItemStack(ItemHandler.CREEPER_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.CHICKEN, new ItemStack(ItemHandler.CHICKEN_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.ENDER_PEARL, new ItemStack(ItemHandler.ENDERMAN_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.ZOMBIE_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.FEATHER, new ItemStack(ItemHandler.CHICKEN_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.BONE, new ItemStack(ItemHandler.SKELETON_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.GHAST_TEAR, new ItemStack(ItemHandler.GHAST_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.ARROW, new ItemStack(ItemHandler.SKELETON_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.STRING, new ItemStack(ItemHandler.SPIDER_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.SLIME_BALL, new ItemStack(ItemHandler.SLIME_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.BLAZE_ROD, new ItemStack(ItemHandler.BLAZE_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.SPIDER_EYE, new ItemStack(ItemHandler.SPIDER_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.DYE, new ItemStack(ItemHandler.SQUID_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.SKULL, new ItemStack(ItemHandler.WITHER_SKELETON_DNA_DRIVE), 0.0F);
+         this.addSmelting(Items.NETHER_STAR, new ItemStack(ItemHandler.WITHER_DNA_DRIVE), 0.0F);
+    	
+    	for(Item i : listItems()) {
+            this.addSmelting(i, new ItemStack(ItemHandler.FAILED_FLASH_DRIVE), 0.0F);
+    	}
     }
+    
+    public ArrayList<Item> listItems() {
+    	ArrayList<Item> list = new ArrayList<>();
+    	for(int i = 0; i < ForgeRegistries.ITEMS.getEntries().size(); i++) {
+    		list.add(Item.getItemById(i));
+    	}
+    	return list;
+	}
 
     public void addSmelting(Block input, ItemStack stack, float experience) {
         this.addSmelting(Item.getItemFromBlock(input), stack, experience);

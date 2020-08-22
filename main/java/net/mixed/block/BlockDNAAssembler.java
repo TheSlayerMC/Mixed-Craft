@@ -2,8 +2,6 @@ package net.mixed.block;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,22 +15,22 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.mixed.BlockHandler;
 import net.mixed.MixedCraft;
-import net.mixed.block.tileentity.TileEntityExtractor;
+import net.mixed.block.tileentity.TileEntityAssembler;
 import net.mixed.client.GuiHandler;
 import net.slayer.api.BlockModContainer;
 import net.slayer.api.EnumMaterialTypes;
 
-public class BlockDNAExtractor extends BlockModContainer {
+public class BlockDNAAssembler extends BlockModContainer {
 
 	private static boolean keepInventory;
 
-	public BlockDNAExtractor(String name, String finalName) {
+	public BlockDNAAssembler(String name, String finalName) {
 		super(EnumMaterialTypes.STONE, name, finalName, 1.0F);
 	}
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Item.getItemFromBlock(BlockHandler.DNA_EXTRACTOR);
+		return Item.getItemFromBlock(BlockHandler.DNA_MIXER);
 	}
 	
 	@Override
@@ -42,8 +40,8 @@ public class BlockDNAExtractor extends BlockModContainer {
 		} else {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-			if (tileentity instanceof TileEntityExtractor) {
-				playerIn.openGui(MixedCraft.MOD_ID, GuiHandler.EXTRACTOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			if (tileentity instanceof TileEntityAssembler) {
+				playerIn.openGui(MixedCraft.MOD_ID, GuiHandler.ASSEMBLER, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			}
 
 			return true;
@@ -70,8 +68,8 @@ public class BlockDNAExtractor extends BlockModContainer {
 		if (stack.hasDisplayName()) {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-			if (tileentity instanceof TileEntityExtractor) {
-				((TileEntityExtractor)tileentity).setCustomInventoryName(stack.getDisplayName());
+			if (tileentity instanceof TileEntityAssembler) {
+				((TileEntityAssembler)tileentity).setCustomInventoryName(stack.getDisplayName());
 			}
 		}
 	}
@@ -81,8 +79,8 @@ public class BlockDNAExtractor extends BlockModContainer {
 		if (!keepInventory) {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-			if (tileentity instanceof TileEntityExtractor) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityExtractor)tileentity);
+			if (tileentity instanceof TileEntityAssembler) {
+				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityAssembler)tileentity);
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 		}
@@ -92,6 +90,6 @@ public class BlockDNAExtractor extends BlockModContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityExtractor();
+		return new TileEntityAssembler();
 	}
 }

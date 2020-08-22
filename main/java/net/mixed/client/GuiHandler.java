@@ -8,13 +8,15 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.mixed.DNAKeyDesc;
 import net.mixed.EnumDNAKey;
 import net.mixed.block.tileentity.*;
+import net.mixed.client.gui.*;
 import net.mixed.container.*;
-import net.mixed.gui.*;
 
 public class GuiHandler implements IGuiHandler {
 
     public static int id = 0;
     public static int 
+    
+    FAILED = id++,
     CREEPER = id++,
 	PIG = id++,
 	SHEEP = id++,
@@ -45,36 +47,11 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerExtractor(player.inventory, (TileEntityExtractor)entity);
         if (ID == MIXER)
             return new ContainerMixer(player.inventory, (TileEntityMixer)entity);
+        if (ID == ASSEMBLER)
+            return new ContainerDNAAssembler(player.inventory, (TileEntityAssembler)entity);
         
-        if (ID == CREEPER)
-            return new ContainerDNAKey();
-        if (ID == PIG)
-            return new ContainerDNAKey();
-        if (ID == SHEEP)
-            return new ContainerDNAKey();
-        if (ID == COW)
-            return new ContainerDNAKey();
-        if (ID == CHICKEN)
-            return new ContainerDNAKey();
-        if (ID == ENDERMAN)
-            return new ContainerDNAKey();
-        if (ID == ZOMBIE)
-            return new ContainerDNAKey();
-        if (ID == SKELETON)
-            return new ContainerDNAKey();
-        if (ID == GHAST)
-            return new ContainerDNAKey();
-        if (ID == SPIDER)
-            return new ContainerDNAKey();
-        if (ID == SLIME)
-            return new ContainerDNAKey();
-        if (ID == SQUID)
-            return new ContainerDNAKey();
-        if (ID == BLAZE)
-            return new ContainerDNAKey();
-        if (ID == WITHER_SKELETON)
-            return new ContainerDNAKey();
-        if (ID == WITHER)
+        if (ID == FAILED || ID == CREEPER || ID == PIG || ID == SHEEP || ID == COW || ID == CHICKEN || ID == ENDERMAN || ID == ZOMBIE || ID == SKELETON || ID == GHAST || ID == SPIDER 
+        		|| ID == SLIME || ID == SQUID || ID == BLAZE || ID == WITHER_SKELETON || ID == WITHER)
             return new ContainerDNAKey();
         return null;
     }
@@ -86,7 +63,11 @@ public class GuiHandler implements IGuiHandler {
         	return new GuiExtractor(player.inventory, (TileEntityExtractor)entity);
         if (ID == MIXER) 
         	return new GuiMixer(player.inventory, (TileEntityMixer)entity);
+        if (ID == ASSEMBLER) 
+        	return new GuiAssembler(player.inventory, (TileEntityAssembler)entity);
         
+        if (ID == FAILED)
+            return new GUIDNAKey(EnumDNAKey.FAILED);
         if (ID == CREEPER)
             return new GUIDNAKey(EnumDNAKey.CREEPER);
         if (ID == PIG)

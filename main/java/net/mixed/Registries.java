@@ -43,5 +43,6 @@ public class Registries {
 	public static void registerTileEntitys() {
         GameRegistry.registerTileEntity(TileEntityExtractor.class, new ResourceLocation(MixedCraft.PREFIX + "extractor"));
         GameRegistry.registerTileEntity(TileEntityMixer.class, new ResourceLocation(MixedCraft.PREFIX + "mixer"));
+        GameRegistry.registerTileEntity(TileEntityAssembler.class, new ResourceLocation(MixedCraft.PREFIX + "assembler"));
     }
 }

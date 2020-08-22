@@ -2,6 +2,7 @@ package net.mixed;
 
 public enum EnumDNAKey {
 
+	FAILED(DNAKeyDesc.FAILED),
 	CREEPER(DNAKeyDesc.CREEPER),
 	PIG(DNAKeyDesc.PIG),
 	COW(DNAKeyDesc.COW),
