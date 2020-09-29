@@ -49,12 +49,24 @@ public class ExtractorRecipes {
     	for(Item i : listItems()) {
             this.addSmelting(i, new ItemStack(ItemHandler.FAILED_FLASH_DRIVE), 0.0F);
     	}
+    	
+    	for(Block b : listBlocks()) {
+            this.addSmelting(b, new ItemStack(ItemHandler.FAILED_FLASH_DRIVE), 0.0F);
+    	}
     }
     
     public ArrayList<Item> listItems() {
     	ArrayList<Item> list = new ArrayList<>();
     	for(int i = 0; i < ForgeRegistries.ITEMS.getEntries().size(); i++) {
     		list.add(Item.getItemById(i));
+    	}
+    	return list;
+	}
+    
+    public ArrayList<Block> listBlocks() {
+    	ArrayList<Block> list = new ArrayList<>();
+    	for(int i = 0; i < ForgeRegistries.BLOCKS.getEntries().size(); i++) {
+    		list.add(Block.getBlockById(i));
     	}
     	return list;
 	}

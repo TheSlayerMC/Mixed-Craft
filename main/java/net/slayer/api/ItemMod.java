@@ -11,12 +11,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.mixed.MixedCraft;
 
-public class MItem extends Item {
-	public MItem(String name, String enName) {
+public class ItemMod extends Item {
+	public ItemMod(String name, String enName) {
 		this(name, enName, MixedCraft.MTab);
 	}
 
-	public MItem(String name, String enName, CreativeTabs tab) {
+	public ItemMod(String name, String enName, CreativeTabs tab) {
 		StuffConstructor.regAndSetupItem(this, name, enName, tab);
 	}
 

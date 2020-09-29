@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.mixed.item.ItemDNAKey;
-import net.slayer.api.MItem;
+import net.mixed.misc.EnumDNAKey;
+import net.slayer.api.ItemMod;
 
 public class ItemHandler {
     public static ArrayList<Item> items = new ArrayList<>();
@@ -34,9 +35,9 @@ public class ItemHandler {
 	public static Item WITHER_DNA_DRIVE;
     
     public static void init() {
-    	FLASH_DRIVE = new MItem("flash_drive", "Flash Drive");
+    	FLASH_DRIVE = new ItemMod("flash_drive", "Flash Drive");
     	FAILED_FLASH_DRIVE = new ItemDNAKey("failed_flash_drive", "Corrupt Drive", EnumDNAKey.FAILED);
-    	MIXED_DNA_DRIVE = new MItem("mixed_dna_drive", "Mixed DNA Drive");
+    	MIXED_DNA_DRIVE = new ItemMod("mixed_dna_drive", "Mixed DNA Drive");
 
     	COW_DNA_DRIVE = new ItemDNAKey("cow_dna_drive", "DNA Drive", EnumDNAKey.COW);
     	PIG_DNA_DRIVE = new ItemDNAKey("pig_dna_drive", "DNA Drive", EnumDNAKey.PIG);

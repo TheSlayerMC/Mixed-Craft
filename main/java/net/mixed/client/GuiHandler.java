@@ -5,11 +5,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.mixed.DNAKeyDesc;
-import net.mixed.EnumDNAKey;
 import net.mixed.block.tileentity.*;
 import net.mixed.client.gui.*;
 import net.mixed.container.*;
+import net.mixed.misc.DNAKeyDesc;
+import net.mixed.misc.EnumDNAKey;
 
 public class GuiHandler implements IGuiHandler {
 

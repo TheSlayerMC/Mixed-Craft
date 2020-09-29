@@ -10,12 +10,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.mixed.EnumDNAKey;
 import net.mixed.ItemHandler;
 import net.mixed.client.gui.GUIDNAKey;
-import net.slayer.api.MItem;
+import net.mixed.misc.EnumDNAKey;
+import net.slayer.api.ItemMod;
 
-public class ItemDNAKey extends MItem{
+public class ItemDNAKey extends ItemMod{
 
 	public EnumDNAKey dna;
 	

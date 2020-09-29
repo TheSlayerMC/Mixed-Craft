@@ -1,4 +1,4 @@
-package net.mixed;
+package net.mixed.misc;
 
 public class DNAKeyDesc {
 

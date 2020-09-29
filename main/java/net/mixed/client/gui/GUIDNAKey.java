@@ -8,9 +8,9 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.mixed.EnumDNAKey;
 import net.mixed.MixedCraft;
 import net.mixed.container.ContainerDNAKey;
+import net.mixed.misc.EnumDNAKey;
 
 public class GUIDNAKey extends GuiContainer {
 
